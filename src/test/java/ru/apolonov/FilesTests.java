@@ -2,14 +2,16 @@ package ru.apolonov;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import org.junit.jupiter.api.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilesTests {
@@ -35,5 +37,18 @@ public class FilesTests {
         File pdf = $(byText("шаблон прайс-листа в PDF")).download();
         PDF parsedPdf = new PDF(pdf);
         Assertions.assertEquals(parsedPdf.title, "Прайс-лист &quot;Прайс-лист_02.03.2020&quot;");
+        Assertions.assertEquals(parsedPdf.numberOfPages, 1);
+    }
+
+    @Test
+    @DisplayName("Парсинг CSV файлов")
+    void parseCsvFileTest() throws IOException, CsvException {
+        ClassLoader classloader = this.getClass().getClassLoader();
+        try (InputStream is = classloader.getResourceAsStream("research2019-csv.csv");
+             Reader reader = new InputStreamReader(is)) {
+            CSVReader csvReader = new CSVReader(reader);
+            List<String[]> strings = csvReader.readAll();
+            assertEquals(strings.size(), 14947);
+        }
     }
 }
