@@ -53,12 +53,12 @@ public class FilesTests {
     }
 /*
     @Test
-    @DisplayName("Скачивание xls файла")
+    @DisplayName("Скачивание xlsx файла")
     void xlsxFileDownloadTest() throws FileNotFoundException {
         open("https://www.stats.govt.nz/large-datasets/csv-files-for-download/");
-        File xls = $(byText("Research and development survey: 2020")).download();
-        XLS parsedXls = new XLS(xls);
-        boolean checkPassed = parsedXls.excel
+        File xlsx = $(byText("Research and development survey: 2020")).download();
+        XLS parsedXlsx = new XLS(xlsx);
+        boolean checkPassed = parsedXlsx.excel
                 .getSheetAt(0)
                 .getRow(0)
                 .getCell(0)
