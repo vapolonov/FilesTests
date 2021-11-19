@@ -51,4 +51,19 @@ public class FilesTests {
             assertEquals(strings.size(), 14947);
         }
     }
+/*
+    @Test
+    @DisplayName("Скачивание xls файла")
+    void xlsxFileDownloadTest() throws FileNotFoundException {
+        open("https://www.stats.govt.nz/large-datasets/csv-files-for-download/");
+        File xls = $(byText("Research and development survey: 2020")).download();
+        XLS parsedXls = new XLS(xls);
+        boolean checkPassed = parsedXls.excel
+                .getSheetAt(0)
+                .getRow(0)
+                .getCell(0)
+                .getStringCellValue().contains("Research and development survey: 2020");
+        assertTrue(checkPassed);
+    }
+ */
 }
