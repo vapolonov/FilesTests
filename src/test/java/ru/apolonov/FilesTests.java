@@ -51,7 +51,7 @@ public class FilesTests {
             assertEquals(strings.size(), 14947);
         }
     }
-/*
+
     @Test
     @DisplayName("Скачивание xlsx файла")
     void xlsxFileDownloadTest() throws FileNotFoundException {
@@ -65,5 +65,5 @@ public class FilesTests {
                 .getStringCellValue().contains("Research and development survey: 2020");
         assertTrue(checkPassed);
     }
- */
+
 }
